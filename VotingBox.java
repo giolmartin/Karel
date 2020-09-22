@@ -26,7 +26,7 @@ public class VotingBox extends SuperKarel {
 					}
 				
 		} else {
-			move();
+			move(); //"commit"
 		}
 		
 	}
