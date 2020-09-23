@@ -1,0 +1,17 @@
+Voter Box algorithm. 
+
+
+while no wall present {
+
+  move ->
+  check for middle chad{
+		if there is middle chad{ //noVote
+			check both up and down chad and place any that are missing
+			move   // Karel is in between the voting areas
+			}
+		else {				//	Vote
+			check both up and down and remove any chad that are present
+			move
+			}
+	}
+ }
