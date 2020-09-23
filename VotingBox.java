@@ -1,3 +1,12 @@
+/*
+ * File: VotingBox.java 
+ * -----------------------------------
+ * The VotingBox subclass as it appears here solves the voting ballot
+ * Assignment by filling or removing punches in the voting ballot 
+ * as necessary. 
+ * 
+ */
+
 import stanford.karel.*;
 
 
@@ -6,9 +15,9 @@ public class VotingBox extends SuperKarel {
 	
 	public void run() {
 		
-		move(); // Moves Karel into the first voting rectangle. 
+		move(); //Moves Karel to first voting rectangle.
 		
-		while (frontIsClear()) {
+		while (frontIsClear() == true) {
 		
 			checkForVotes();
 			
@@ -28,8 +37,10 @@ public class VotingBox extends SuperKarel {
 	
 	public void checkForVotes() {
 		
+		
 		checkMiddlePunch();
 		moveToVote();
+		
 		
 	}
 	
@@ -137,10 +148,13 @@ public class VotingBox extends SuperKarel {
 	 */
 	public void moveToVote() {
 		
-		move();
-		if(frontIsClear() == true) {
-		move();
-		} 
+			move();
+			
+			if(frontIsClear() == true) {
+				move();
+				}
+		
+		
 	}
 	/*
 	 *  Moves form the bottom punch to the middle punch and ends facing
