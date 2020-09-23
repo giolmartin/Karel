@@ -10,7 +10,6 @@ public class VotingBox extends SuperKarel {
 		
 		while (frontIsClear()) {
 		
-			
 			checkForVotes();
 			
 		}
@@ -112,7 +111,9 @@ public class VotingBox extends SuperKarel {
 		
 	}
 	
-	
+	/*
+	 * Check and removes upper punch if necessary.
+	 */
 	public void checkUpperPunchVote() {
 		
 		while (beepersPresent()) {
@@ -121,7 +122,9 @@ public class VotingBox extends SuperKarel {
 		}
 	}
 
-	
+	/*
+	 * Check and removes bottom punch if necessary. 
+	 */
 	public void checkBottomPunchVote() {
 		
 		while(beepersPresent()) {
