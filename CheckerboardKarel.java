@@ -17,23 +17,22 @@ public class CheckerboardKarel extends SuperKarel {
 		if(frontIsBlocked() == true) { //1xN or 1x1 
 			placeBeeperException();
 		} 
-			
-		while (frontIsClear() == true ) {
-				
+			drawCheckBoard(counter);
+		
+	}
+	
+	public void drawCheckBoard(int counter) {
+		
+		while (frontIsClear() == true ) {	
 			counter = 	placeBeepers(counter);	
-				
 				switchStreetWest();
-				if (counter%2 == 0) { // 
-					System.out.println(counter);
+				if (counter%2 == 0) {            //checks for Odd movements.
 					placeBeepersOdd();}
-				
 				if (facingNorth() == false) {
 			counter =	placeBeepers(counter);	
 				switchStreetEast();
 				}
-		}
-		
-		
+		}	
 	}
 	
 	/*
