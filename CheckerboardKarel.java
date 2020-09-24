@@ -1,80 +1,77 @@
 /*
  * File: CheckerboardKarel.java
  * ----------------------------
- * When you finish writing it, the CheckerboardKarel class should draw
- * a checkerboard using beepers, as described in Assignment 1.  You
- * should make sure that your program works for all of the sample
- * worlds supplied in the starter folder.
+ * The CheckerboardKarel class draws
+ * a checker board using beepers, as described in Assignment 1.  Works for 
+ * all samples supplied in the folder. 
  */
 
 import stanford.karel.*;
 
 public class CheckerboardKarel extends SuperKarel {
 
-	// You fill in this part
+	
 	public void run() {
+		int counter = 0; //created counter to add movements. 
 		
-		
-		
-		if(frontIsBlocked() == true) {
+		if(frontIsBlocked() == true) { //1xN or 1x1 
 			placeBeeperException();
-		}
+		} 
 			
 		while (frontIsClear() == true ) {
 				
-				placeBeepers();
+			counter = 	placeBeepers(counter);	
+				
 				switchStreetWest();
+				if (counter%2 == 0) { // 
+					System.out.println(counter);
+					placeBeepersOdd();}
 				
 				if (facingNorth() == false) {
-				placeBeepers();	
+			counter =	placeBeepers(counter);	
 				switchStreetEast();
 				}
 		}
 		
+		
 	}
 	
 	/*
-	 * Places Beepers on one street moving East
+	 * Places Beepers on the street, 
+	 *  i is a counter that measures he street and 
+	 *  determines if odds or even.  
 	 */
 	
-	public void placeBeepers(){
-		
-		
-		putBeeper();
-		
+	public int placeBeepers(int i){
 		while(frontIsClear() == true) {
-			
-			move();
-			
-			if(frontIsClear() == true) {
-				
-				move();
-				putBeeper();
-			
-			}
+			putBeeper();
+			move();	
+			i++;
+				if(frontIsClear() == true) {
+					move();
+					i++;
+					if(frontIsBlocked() == true) {
+						putBeeper();
+					}	
+				} 
 		}
-		
+		return i;
 	}
 	
 	/*
-	 * Places beeper moving West
+	 * Prerequisite placeBeepers class places beeper right before a wall. 
+	 * Result skips first beeper and moves to second position moving 
+	 * West
 	 */
 	
 	public void placeBeepersOdd() {
 		
-
-		while(frontIsClear() == true) {
-		
-		move();
-		putBeeper();
-		
-			
-			if(frontIsClear() == true) {
-			
+		while (frontIsClear() == true) {
 			move();
-			
-			}
-		
+			putBeeper();
+			if (frontIsClear() == true) {
+				move();
+			}	
 		}
 	}
 
@@ -84,10 +81,7 @@ public class CheckerboardKarel extends SuperKarel {
 	
 	public void switchStreetWest() {
 		
-		if (facingNorth() == false) {
 		turnLeft();
-		}
-		
 		if(frontIsClear() == true) {
 			move();
 			turnLeft();
@@ -98,46 +92,32 @@ public class CheckerboardKarel extends SuperKarel {
 	 * Changes street, moving North and facing East
 	 */
 	public void switchStreetEast() {
-		
-		if (facingNorth() == false) {
-			turnRight();
-			}
+		turnRight();
+			
 		if(frontIsClear() == true) {
 			move();
 			turnRight();
-		} 
-			
-		
-		
+		} 		
 	}
 	
 	/*
-	 * This is a resolution when there is only ONE avenue present. 
+	 * This is a resolution when there is only ONE avenue present or a 1x1 world.
+	 * Solves 1xn - 1x1 world.
 	 */
 	
-	public void placeBeeperException(){
-		
+	public void placeBeeperException(){		
+		int i =0;
 		if(leftIsClear() == true) {
-		
+			turnLeft();
+		} else {
+			putBeeper();
 			turnLeft();
 		}
 		
 		if (frontIsClear() == true) {
-			placeBeepers();
+			placeBeepers(i);
 		}
 			
-	}
-	public void placeBeeperAvenueException() {
-			turnLeft();
-			putBeeper();
-		
-	}
-	
-	public void switchStreetsException() {
-		
-		if (frontIsClear() == true) {
-			move();
-		}
 	}
 	
 }
